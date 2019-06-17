@@ -16,6 +16,9 @@ public class CourseServiceImpl implements CourseService
     @Autowired
     private CourseRepository courserepos;
 
+    @Autowired
+    private CourseService courseService;
+
     @Override
     public ArrayList<Course> findAll()
     {
@@ -42,5 +45,10 @@ public class CourseServiceImpl implements CourseService
         {
             throw new EntityNotFoundException(Long.toString(id));
         }
+    }
+
+    @Override
+    public Course findCourseById(long id)  throws EntityNotFoundException {
+        return courserepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
     }
 }
