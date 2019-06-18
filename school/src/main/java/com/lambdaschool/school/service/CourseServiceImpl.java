@@ -1,6 +1,7 @@
 package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.Student;
 import com.lambdaschool.school.repository.CourseRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,25 @@ public class CourseServiceImpl implements CourseService
     @Override
     public Course findCourseById(long id)  throws EntityNotFoundException {
         return courserepos.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
+    }
+
+    @Override
+    public Course save(Course course) {
+
+
+        course.setCoursename(course.getCoursename());
+        course.setInstructor(course.getInstructor());
+        course.setStudents(course.getStudents());
+
+
+        ArrayList<Student> newStudents = new ArrayList<>();
+        for (Student stu : course.getStudents())
+        {
+            newStudents.add(new Student( stu.getStudname()));
+        }
+        course.setStudents(newStudents);
+
+
+        return courserepos.save(course);
     }
 }
