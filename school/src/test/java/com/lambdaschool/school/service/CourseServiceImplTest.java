@@ -54,6 +54,11 @@ public class CourseServiceImplTest {
     }
 
     @Test
+    public void findCourseById() {
+        assertEquals("Data Science", courseService.findCourseById(1).getCoursename());
+    }
+
+    @Test
     public void findAll1() {
     }
 
@@ -65,10 +70,6 @@ public class CourseServiceImplTest {
     public void delete1() {
     }
 
-    @Test
-    public void findCourseById() {
 
-            assertEquals("Data Science", courseService.findCourseById(1).getCoursename());
-    }
 
 }
