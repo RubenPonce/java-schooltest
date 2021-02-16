@@ -19,5 +19,8 @@ public interface CourseRepository extends CrudRepository<Course, Long>
 
     @Query(value = "SELECT s.courseid, coursename, count(studid) as countstudents FROM studcourses s INNER JOIN course c on s.courseid=c.courseid GROUP BY s.courseid, coursename", nativeQuery = true)
     ArrayList<CountStudentsInCourses> getCountStudentsInCourse();
+
+//    @Query(value="SELECT COURSENAME FROM COURSE WHERE COURSEID = :courseid", nativeQuery = true)
+//    Course findCourseById(long courseid);
 }
 
